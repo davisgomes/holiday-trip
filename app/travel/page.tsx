@@ -4,11 +4,54 @@ import { useEffect, useState } from "react";
 import { Tangerine } from "next/font/google";
 import styles from "../title-animation.module.scss";
 import Navigation from "@/components/Navigation";
+import { prefix } from '@/lib/prefix';
 
 const tangerine = Tangerine({
   weight: ["400", "700"],
   subsets: ["latin"],
 });
+
+const travelSegments = [
+  {
+    id: 1,
+    type: 'Outbound Flight',
+    from: 'New York (JFK)',
+    to: 'Maldives (MLE)',
+    date: '2024-12-20',
+    time: '08:00 AM',
+    airline: 'Emirates',
+    flightNumber: 'EK 123',
+    duration: '16h 30m',
+    price: '$1,200',
+    image: '/images/travel.jpg',
+  },
+  {
+    id: 2,
+    type: 'Connection Flight',
+    from: 'Maldives (MLE)',
+    to: 'Zurich (ZRH)',
+    date: '2024-12-25',
+    time: '11:00 PM',
+    airline: 'Swiss Air',
+    flightNumber: 'LX 456',
+    duration: '9h 15m',
+    price: '$950',
+    image: '/images/travel.jpg',
+  },
+  {
+    id: 3,
+    type: 'Return Flight',
+    from: 'Zurich (ZRH)',
+    to: 'New York (JFK)',
+    date: '2024-12-30',
+    time: '02:00 PM',
+    airline: 'Swiss Air',
+    flightNumber: 'LX 789',
+    duration: '8h 45m',
+    price: '$1,100',
+    image: '/images/travel.jpg',
+  },
+];
 
 export default function TravelPage() {
   const [showTitle, setShowTitle] = useState(true);
@@ -34,16 +77,16 @@ export default function TravelPage() {
       <Navigation />
       <main className="relative min-h-screen w-full overflow-x-hidden bg-white"
         style={{
-          backgroundImage: 'url(/images/art-deco-bg.jpg)',
-        backgroundRepeat: 'repeat',
-        backgroundSize: '500px 500px',
-        backgroundPosition: 'center',
-      }}
+          backgroundImage: `url(${prefix}/images/art-deco-bg.jpg)`,
+          backgroundRepeat: 'repeat',
+          backgroundSize: '500px 500px',
+          backgroundPosition: 'center',
+        }}
     >
       <div className="relative h-96 w-full flex items-end mt-6 md:mt-12">
         <div className={`relative w-full h-full mx-6 md:mx-12 rounded-3xl overflow-hidden drop-shadow-2xl border-4 border-[#b49900] transition-all duration-1000 ${showTitle ? 'opacity-100' : 'opacity-0'}`}>
           <Image
-            src="/images/travel.jpg"
+            src={`${prefix}/images/travel.jpg`}
             alt="Travel Background"
             fill
             className={`w-full h-full object-cover object-top rounded-2xl drop-shadow-2xl transition-all duration-1000 ${showTitle ? 'opacity-100' : 'opacity-0'}`}

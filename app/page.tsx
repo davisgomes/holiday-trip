@@ -6,6 +6,7 @@ import Navigation from "@/components/Navigation";
 import { useState, useEffect } from "react";
 import styles from "./title-animation.module.scss";
 import carouselStyles from "./carousel-animation.module.scss";
+import { prefix } from "@/lib/prefix";
 
 const tangerine = Tangerine({
   weight: ["400", "700"],
@@ -13,10 +14,10 @@ const tangerine = Tangerine({
 });
 
 const categories = [
-  { name: "Travel", icon: "/images/travel.jpg" },
-  { name: "Accommodations", icon: "/images/accommodations.jpg" },
-  { name: "Activities", icon: "/images/activities.jpg" },
-  { name: "Packing", icon: "/images/packing.jpg" },
+  { name: "Travel", icon: `${prefix}/images/travel.jpg` },
+  { name: "Accommodations", icon: `${prefix}/images/accommodations.jpg` },
+  { name: "Activities", icon: `${prefix}/images/activities.jpg` },
+  { name: "Packing", icon: `${prefix}/images/packing.jpg` },
 ];
 
 export default function Home() {
@@ -60,7 +61,7 @@ export default function Home() {
       <Navigation />
       <main className="relative min-h-screen w-full overflow-x-hidden"
         style={{
-          backgroundImage: 'url(/images/art-deco-bg.jpg)',
+          backgroundImage: `url(${prefix}/images/art-deco-bg.jpg)`,
           backgroundRepeat: 'repeat',
           backgroundSize: '500px 500px',
           backgroundPosition: 'center',
@@ -69,7 +70,7 @@ export default function Home() {
         <div className="relative h-screen w-full flex items-end mt-6 md:mt-12">
           <div className={`relative w-full h-full mx-6 md:mx-12 rounded-3xl overflow-hidden drop-shadow-2xl border-4 border-[#b49900] transition-all duration-1000 ${showTitle ? 'opacity-100' : 'opacity-0'}`}> 
             <Image
-              src="/images/resort-pool.jpg"
+              src={`${prefix}/images/resort-pool.jpg`}
               alt="Beach Background"
               fill
               className={`w-full h-full object-cover object-top rounded-2xl drop-shadow-2xl transition-all duration-1000 ${showTitle ? 'opacity-100' : 'opacity-0'}`}
@@ -91,7 +92,7 @@ export default function Home() {
           <div className="relative w-full px-4 md:px-8 z-10">
             <div className="mt-8 flex flex-row flex-wrap md:grid md:grid-cols-4 gap-4 md:gap-6 overflow-x-auto md:overflow-x-visible pb-2 scrollbar-thin scrollbar-thumb-[#00CED1]/30 scrollbar-track-transparent w-full">
               {categories.map((cat) => (
-                <a
+                <Link
                   key={cat.name}
                   href={`/${cat.name.toLowerCase()}`}
                   className={`relative shrink min-w-[140px] flex-1 md:min-w-0 md:w-full h-64 md:h-80 rounded-xl shadow-md transition-all duration-300 cursor-pointer bg-transparent overflow-visible flex flex-col items-center justify-center group hover:z-20 no-underline ${carouselStyles['carousel-item']} ${carouselVisible ? carouselStyles['carousel-item--visible'] : carouselStyles['carousel-item--hidden']}`}
@@ -112,7 +113,7 @@ export default function Home() {
                       {cat.name}
                     </span>
                   </div>
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -121,7 +122,7 @@ export default function Home() {
         <div className={`px-8 pb-12 w-full flex justify-center items-center transition-all duration-1000 ${carouselVisible ? 'opacity-100' : 'opacity-0'}`}>
           <div className="relative w-full px-4 md:px-8 h-24 md:h-64 rounded-3xl overflow-hidden drop-shadow-2xl border-4 border-[#b49900] bg-white/60">
             <Image
-              src="/images/hotel-view.jpg"
+              src={`${prefix}/images/hotel-view.jpg`}
               alt="Hotel Decoration"
               fill
               className="object-cover object-center rounded-2xl"

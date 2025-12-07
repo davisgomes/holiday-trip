@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Tangerine } from "next/font/google";
 import styles from "../title-animation.module.scss";
 import Navigation from "@/components/Navigation";
+import { prefix } from '@/lib/prefix';
 
 const tangerine = Tangerine({
   weight: ["400", "700"],
@@ -34,16 +35,16 @@ export default function AccommodationsPage() {
       <Navigation />
       <main className="relative min-h-screen w-full overflow-x-hidden bg-white"
         style={{
-          backgroundImage: 'url(/images/art-deco-bg.jpg)',
-        backgroundRepeat: 'repeat',
-        backgroundSize: '500px 500px',
-        backgroundPosition: 'center',
-      }}
+          backgroundImage: `url(${prefix}/images/art-deco-bg.jpg)`,
+          backgroundRepeat: 'repeat',
+          backgroundSize: '500px 500px',
+          backgroundPosition: 'center',
+        }}
     >
       <div className="relative h-96 w-full flex items-end mt-6 md:mt-12">
         <div className={`relative w-full h-full mx-6 md:mx-12 rounded-3xl overflow-hidden drop-shadow-2xl border-4 border-[#b49900] transition-all duration-1000 ${showTitle ? 'opacity-100' : 'opacity-0'}`}>
           <Image
-            src="/images/travel.jpg"
+            src={`${prefix}/images/accommodations.jpg`}
             alt="Accommodations Background"
             fill
             className={`w-full h-full object-cover object-top rounded-2xl drop-shadow-2xl transition-all duration-1000 ${showTitle ? 'opacity-100' : 'opacity-0'}`}
