@@ -131,10 +131,6 @@ export default function Home() {
             />
           </div>
         </div>
-        {/* Elegant Footer */}
-        <footer className="w-full py-4 bg-zinc-900 flex items-center justify-center">
-          <span className={`text-2xl font-light text-white text-center ${tangerine.className}`}>© {new Date().getFullYear()} Our Cancun Vacation</span>
-        </footer>
       </main>
     </>
   );

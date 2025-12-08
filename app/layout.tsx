@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Tangerine } from "next/font/google";
 import "./globals.css";
+import { prefix } from '@/lib/prefix';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -9,6 +10,11 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const tangerine = Tangerine({
+  weight: ["400", "700"],
   subsets: ["latin"],
 });
 
@@ -32,12 +38,27 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <main
-          className={`${geistSans.variable} ${geistMono.variable} font-sans min-h-screen bg-white text-black`}
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <div
+          className="min-h-screen w-full bg-white"
+          style={{
+            backgroundImage: `url(${prefix}/images/art-deco-bg.jpg)`,
+            backgroundRepeat: "repeat",
+            backgroundSize: "500px 500px",
+            backgroundPosition: "center",
+          }}
         >
           {children}
-        </main>
+          <footer className="w-full py-8 bg-zinc-900 flex flex-col items-center justify-center gap-4">
+            <span
+              className={`text-2xl font-light text-white text-center ${tangerine.className}`}
+            >
+              © {new Date().getFullYear()} Our Cancun Vacation
+            </span>
+          </footer>
+        </div>
       </body>
     </html>
   );

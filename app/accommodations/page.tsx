@@ -1,282 +1,162 @@
 'use client';
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { Tangerine } from "next/font/google";
-import styles from "../title-animation.module.scss";
 import Navigation from "@/components/Navigation";
-import { prefix } from '@/lib/prefix';
-
-const tangerine = Tangerine({
-  weight: ["400", "700"],
-  subsets: ["latin"],
-});
+import PageHeader from "@/components/page-layout/PageHeader";
+import ContentCard from "@/components/page-layout/ContentCard";
+import SectionHeading from "@/components/content/SectionHeading";
+import ListItem from "@/components/content/ListItem";
+import InfoTag from "@/components/content/InfoTag";
 
 export default function AccommodationsPage() {
-  const [showTitle, setShowTitle] = useState(true);
-  const [lastScroll, setLastScroll] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScroll = window.scrollY;
-      const threshold = window.innerHeight * 0.3;
-      if (currentScroll > lastScroll && currentScroll > threshold) {
-        setShowTitle(false);
-      } else if (currentScroll < lastScroll || currentScroll < threshold) {
-        setShowTitle(true);
-      }
-      setLastScroll(currentScroll);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScroll]);
-
   return (
     <>
       <Navigation />
-      <main className="relative min-h-screen w-full overflow-x-hidden bg-white"
-        style={{
-          backgroundImage: `url(${prefix}/images/art-deco-bg.jpg)`,
-          backgroundRepeat: 'repeat',
-          backgroundSize: '500px 500px',
-          backgroundPosition: 'center',
-        }}
-    >
-      <div className="relative h-96 w-full flex items-end mt-6 md:mt-12">
-        <div className={`relative w-full h-full mx-6 md:mx-12 rounded-3xl overflow-hidden drop-shadow-2xl border-4 border-[#b49900] transition-all duration-1000 ${showTitle ? 'opacity-100' : 'opacity-0'}`}>
-          <Image
-            src={`${prefix}/images/accommodations.jpg`}
-            alt="Accommodations Background"
-            fill
-            className={`w-full h-full object-cover object-top rounded-2xl drop-shadow-2xl transition-all duration-1000 ${showTitle ? 'opacity-100' : 'opacity-0'}`}
-            priority
-          />
-          <div className="absolute inset-0 flex items-center justify-center px-4">
-            <h1
-              className={`text-4xl sm:text-5xl md:text-8xl font-light tracking-tight text-white drop-shadow-lg bg-transparent text-center ${tangerine.className} ${styles.title} ${showTitle ? styles["title--visible"] : styles["title--hidden"]}`}
-            >
-              Accommodations
-            </h1>
-          </div>
-        </div>
-      </div>
-      <section className="w-full pt-12 pb-20 relative">
-        <div className="relative w-full px-6 md:px-12 z-10">
-          <div className="mt-8 text-lg md:text-xl text-zinc-800 bg-white/90 rounded-3xl p-8 md:p-12 shadow-2xl border-4 border-[#b49900]">
-            <h2 className={`text-4xl md:text-6xl font-light mb-6 text-[#b49900] ${tangerine.className}`}>Hotel Information</h2>
-            <ul className="list-none ml-0 mb-8 space-y-4">
-              <li className="flex items-start">
-                <span className="text-[#b49900] mr-3 text-2xl">🏨</span>
-                <div>
-                  <strong>Hotel:</strong> <a href="https://www.riu.com/en/hotel/mexico/cancun/hotel-riu-palace-las-americas#hotel-facilities" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">Hotel Riu Palace Las Americas</a>
-                  <br />
-                  <span className="text-base md:text-lg text-zinc-600">All-inclusive luxury resort in Cancun</span>
-                </div>
-              </li>
-            </ul>
+      <main className="relative min-h-screen w-full overflow-x-hidden">
+        <PageHeader
+          imageSrc="/images/accommodations.jpg"
+          imageAlt="Accommodations Background"
+          title="Where to Stay"
+        />
+        
+        <ContentCard>
+          <p className="mb-8 text-zinc-600">
+            Cancun offers everything from all-inclusive resorts to boutique hotels. The Hotel Zone is perfect for beach access and convenience.
+          </p>
 
-            <h2 className={`text-4xl md:text-6xl font-light mb-6 text-[#b49900] ${tangerine.className}`}>Restaurants</h2>
-            <ul className="list-none ml-0 mb-8 space-y-4">
-              <li className="flex items-start">
-                <span className="text-[#b49900] mr-3 text-2xl">🍽️</span>
-                <div>
-                  <strong>Don Roberto</strong> - Main Restaurant
-                  <br />
-                  <span className="text-base md:text-lg">Buffet breakfasts, lunches and dinners with live cooking stations, fruits, juices, sparkling wine and desserts. Features 3 special nights a week.</span>
-                </div>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#b49900] mr-3 text-2xl">🏊</span>
-                <div>
-                  <strong>El Romero</strong> - Poolside Restaurant
-                  <br />
-                  <span className="text-base md:text-lg">Continental breakfast buffet and varied snacks with hot and cold dishes for lunch.</span>
-                </div>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#b49900] mr-3 text-2xl">🇮🇹</span>
-                <div>
-                  <strong>Los Arcos</strong> - Italian Restaurant
-                  <br />
-                  <span className="text-base md:text-lg">Buffet lunches and à la carte dinners.</span>
-                </div>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#b49900] mr-3 text-2xl">🍱</span>
-                <div>
-                  <strong>Sakura</strong> - Asian Restaurant
-                  <br />
-                  <span className="text-base md:text-lg">Authentic recipes from across Asia.</span>
-                </div>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#b49900] mr-3 text-2xl">✨</span>
-                <div>
-                  <strong>Krystal</strong> - Gourmet Restaurant
-                  <br />
-                  <span className="text-base md:text-lg">Fusion dishes and gourmet menu.</span>
-                </div>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#b49900] mr-3 text-2xl">🇲🇽</span>
-                <div>
-                  <strong>Fiesta Mexicana</strong> - Mexican Restaurant
-                  <br />
-                  <span className="text-base md:text-lg">The best traditional recipes from Mexico.</span>
-                </div>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#b49900] mr-3 text-2xl">👔</span>
-                <div>
-                  <strong>Dress Code:</strong>
-                  <br />
-                  <span className="text-base md:text-lg">Gentlemen must wear shirts with sleeves for dinner at the main restaurant and themed restaurants.</span>
-                </div>
-              </li>
-            </ul>
+          <SectionHeading>All-Inclusive Resorts</SectionHeading>
+          <p className="mb-4 text-zinc-600">
+            Most popular choice for hassle-free vacations. Everything included: meals, drinks, entertainment, and activities.
+          </p>
+          <ul className="list-none ml-0 mb-8 space-y-4">
+            <ListItem icon="🏨" title="Moon Palace Cancun - HIGHLY RECOMMENDED:">
+              <span className="text-base md:text-lg">Massive all-inclusive resort with excellent food, multiple pools, and great activities. Perfect for couples and families.</span>
+              <InfoTag type="inclusion">• Multiple restaurants and bars</InfoTag>
+              <InfoTag type="inclusion">• Golf course and water park</InfoTag>
+              <InfoTag type="inclusion">• Spa and fitness center</InfoTag>
+              <InfoTag type="inclusion">• Nightly entertainment</InfoTag>
+              <InfoTag type="tip">💡 Book directly or through travel agents for best rates</InfoTag>
+            </ListItem>
 
-            <h2 className={`text-4xl md:text-6xl font-light mb-6 text-[#b49900] ${tangerine.className}`}>Bars</h2>
-            <ul className="list-none ml-0 mb-8 space-y-4">
-              <li className="flex items-start">
-                <span className="text-[#b49900] mr-3 text-2xl">🏊‍♂️</span>
-                <div>
-                  <strong>Cun</strong> - Swim-up Bar
-                  <br />
-                  <span className="text-base md:text-lg">Enjoy drinks without leaving the pool.</span>
-                </div>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#b49900] mr-3 text-2xl">🍹</span>
-                <div>
-                  <strong>Can</strong> - Pool Bar with Terrace
-                  <br />
-                  <span className="text-base md:text-lg">Poolside refreshments in a relaxed atmosphere.</span>
-                </div>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#b49900] mr-3 text-2xl">🎭</span>
-                <div>
-                  <strong>Art Deco</strong> - Lobby Bar
-                  <br />
-                  <span className="text-base md:text-lg">Sophisticated atmosphere in the hotel lobby.</span>
-                </div>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#b49900] mr-3 text-2xl">🍰</span>
-                <div>
-                  <strong>Capuchino</strong> - Pastry Shop & Ice Cream Parlor
-                  <br />
-                  <span className="text-base md:text-lg">Indulge in sweet treats and ice cream.</span>
-                </div>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#b49900] mr-3 text-2xl">☕</span>
-                <div>
-                  <strong>Lounge 24</strong> - 24-Hour Bar
-                  <br />
-                  <span className="text-base md:text-lg">Open space available all day long.</span>
-                </div>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#b49900] mr-3 text-2xl">🎪</span>
-                <div>
-                  <strong>La Terraza</strong> - Plaza Bar
-                  <br />
-                  <span className="text-base md:text-lg">Outdoor atmosphere with a stage for live shows and entertainment.</span>
-                </div>
-              </li>
-            </ul>
+            <ListItem icon="🏨" title="Hyatt Zilara Cancun:">
+              <span className="text-base md:text-lg">Adults-only luxury resort in the heart of the Hotel Zone. Known for excellent service and beautiful beachfront.</span>
+              <InfoTag type="inclusion">• Swim-up suites available</InfoTag>
+              <InfoTag type="inclusion">• Multiple specialty restaurants</InfoTag>
+              <InfoTag type="inclusion">• Premium drinks and top-shelf liquor</InfoTag>
+            </ListItem>
 
-            <h2 className={`text-4xl md:text-6xl font-light mb-6 text-[#b49900] ${tangerine.className}`}>All-Inclusive</h2>
-            <ul className="list-none ml-0 mb-8 space-y-3">
-              <li className="flex items-start">
-                <span className="text-[#b49900] mr-3 text-2xl">⭐</span>
-                <span>Most exclusive RIU service providing the greatest well-being without any worries</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#b49900] mr-3 text-2xl">🤿</span>
-                <span>Wide range of activities including diving, kayaking, bodyboarding, and much more!</span>
-              </li>
-            </ul>
+            <ListItem icon="🏨" title="Hard Rock Hotel Cancun:">
+              <span className="text-base md:text-lg">Music-themed resort with rock memorabilia. Great for younger crowds and partygoers.</span>
+              <InfoTag type="inclusion">• Live music and entertainment</InfoTag>
+              <InfoTag type="inclusion">• Multiple pools and swim-up bars</InfoTag>
+              <InfoTag type="inclusion">• Kids Rock program for families</InfoTag>
+            </ListItem>
 
-            <h2 className={`text-4xl md:text-6xl font-light mb-6 text-[#b49900] ${tangerine.className}`}>Beach & Pools</h2>
-            <ul className="list-none ml-0 mb-8 space-y-4">
-              <li className="flex items-start">
-                <span className="text-[#b49900] mr-3 text-2xl">🏖️</span>
-                <div>
-                  <strong>Beach:</strong>
-                  <br />
-                  <span className="text-base md:text-lg">White sand beach with reserved area for guests, free sun loungers, and stunning views of the Mexican Caribbean.</span>
-                </div>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#b49900] mr-3 text-2xl">♾️</span>
-                <div>
-                  <strong>Infinity Pools:</strong>
-                  <br />
-                  <span className="text-base md:text-lg">Two spectacular infinity pools heated in winter with breathtaking ocean views, plus a third pool for a more tranquil experience. Surrounded by sun loungers and umbrellas with complimentary towels.</span>
-                </div>
-              </li>
-            </ul>
+            <ListItem icon="🏨" title="Excellence Playa Mujeres:">
+              <span className="text-base md:text-lg">Upscale adults-only resort north of the Hotel Zone. More secluded and tranquil setting.</span>
+              <InfoTag type="inclusion">• All suites with private terraces</InfoTag>
+              <InfoTag type="inclusion">• 11 restaurants and 14 bars</InfoTag>
+              <InfoTag type="inclusion">• World-class spa</InfoTag>
+              <InfoTag type="tip">📍 About 30 minutes from airport, quieter location</InfoTag>
+            </ListItem>
+          </ul>
 
-            <h2 className={`text-4xl md:text-6xl font-light mb-6 text-[#b49900] ${tangerine.className}`}>RIU Party</h2>
-            <ul className="list-none ml-0 mb-8 space-y-3">
-              <li className="flex items-start">
-                <span className="text-[#b49900] mr-3 text-2xl">🎉</span>
-                <div>
-                  <strong>Themed Parties:</strong>
-                  <br />
-                  <span className="text-base md:text-lg">Join exciting themed parties several times a week at Hotel Riu Caribe with transportation included. Enjoy music, lights, and shows in a festive atmosphere.</span>
-                  <br />
-                  <a href="https://www.riu.com/en/riu-party" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">Discover more about RIU Party</a>
-                </div>
-              </li>
-            </ul>
+          <SectionHeading>Hotel Zone vs. Downtown</SectionHeading>
+          <ul className="list-none ml-0 mb-8 space-y-4">
+            <ListItem icon="🏖️" title="Hotel Zone (Zona Hotelera):">
+              <span className="text-base md:text-lg">The main tourist strip with resorts, beaches, restaurants, and nightlife.</span>
+              <InfoTag type="tip">✅ Direct beach access</InfoTag>
+              <InfoTag type="tip">✅ Walking distance to shops and restaurants</InfoTag>
+              <InfoTag type="tip">✅ Easy access to activities and tours</InfoTag>
+              <InfoTag type="tip">✅ Safe and well-patrolled</InfoTag>
+              <InfoTag type="warning">❌ More expensive</InfoTag>
+              <InfoTag type="warning">❌ Can feel touristy</InfoTag>
+            </ListItem>
 
-            <h2 className={`text-4xl md:text-6xl font-light mb-6 text-[#b49900] ${tangerine.className}`}>Fitness & Sports</h2>
-            <ul className="list-none ml-0 mb-8 space-y-3">
-              <li className="flex items-start">
-                <span className="text-[#b49900] mr-3 text-2xl">💪</span>
-                <span><strong>Gym:</strong> Complimentary access with cardio and weight training equipment</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#b49900] mr-3 text-2xl">🧘</span>
-                <span><strong>RIU Fit:</strong> Cardiovascular exercises, yoga, stretching, step classes, TRX, aqua gym and more</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#b49900] mr-3 text-2xl">⛳</span>
-                <span><strong>Golf:</strong> Nearby golf courses available for guests in a tropical setting</span>
-              </li>
-            </ul>
+            <ListItem icon="🏙️" title="Downtown Cancun (El Centro):">
+              <span className="text-base md:text-lg">Authentic local area with better prices but requires transportation to beaches.</span>
+              <InfoTag type="tip">✅ More affordable</InfoTag>
+              <InfoTag type="tip">✅ Authentic Mexican experience</InfoTag>
+              <InfoTag type="tip">✅ Better local restaurants</InfoTag>
+              <InfoTag type="warning">❌ No beach access from hotels</InfoTag>
+              <InfoTag type="warning">❌ Need transportation to activities</InfoTag>
+            </ListItem>
+          </ul>
 
-            <h2 className={`text-4xl md:text-6xl font-light mb-6 text-[#b49900] ${tangerine.className}`}>Spa & Wellness</h2>
-            <ul className="list-none ml-0 mb-8 space-y-3">
-              <li className="flex items-start">
-                <span className="text-[#b49900] mr-3 text-2xl">💆</span>
-                <div>
-                  <strong>Renova Spa:</strong>
-                  <br />
-                  <span className="text-base md:text-lg">Dedicated wellness and relaxation space offering massages, hairdressing, and beauty services to rejuvenate body and mind.</span>
-                </div>
-              </li>
-            </ul>
+          <SectionHeading>What to Look For</SectionHeading>
+          <ul className="list-none ml-0 mb-8 space-y-4">
+            <ListItem icon="🏊" title="Beach Quality:">
+              <span className="text-base md:text-lg">Check recent reviews for seaweed issues. Some beaches are better maintained than others.</span>
+              <InfoTag type="tip">Northern beaches tend to have less seaweed</InfoTag>
+            </ListItem>
 
-            <h2 className={`text-4xl md:text-6xl font-light mb-6 text-[#b49900] ${tangerine.className}`}>Entertainment</h2>
-            <ul className="list-none ml-0 space-y-3">
-              <li className="flex items-start">
-                <span className="text-[#b49900] mr-3 text-2xl">🎭</span>
-                <span>Daily entertainment program with recreational activities throughout the day</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#b49900] mr-3 text-2xl">🎵</span>
-                <span>Evening live shows and musical performances ensuring fun every night</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-      <footer className="w-full py-8 bg-zinc-900 flex flex-col items-center justify-center gap-4">
-        <span className={`text-2xl font-light text-white text-center ${tangerine.className}`}>© {new Date().getFullYear()} Our Cancun Vacation</span>
-      </footer>
+            <ListItem icon="🍽️" title="Food Quality:">
+              <span className="text-base md:text-lg">Read reviews about restaurant variety and quality. Some all-inclusives have better dining than others.</span>
+              <InfoTag type="tip">Look for resorts with à la carte restaurants, not just buffets</InfoTag>
+            </ListItem>
+
+            <ListItem icon="🚌" title="Location:">
+              <span className="text-base md:text-lg">Consider proximity to airport, activities, and nightlife based on your priorities.</span>
+              <InfoTag type="tip">Central Hotel Zone offers best access to everything</InfoTag>
+            </ListItem>
+
+            <ListItem icon="🎭" title="Entertainment:">
+              <span className="text-base md:text-lg">Check what activities and nightly shows are included.</span>
+            </ListItem>
+
+            <ListItem icon="👶" title="Family-Friendly vs. Adults-Only:">
+              <span className="text-base md:text-lg">Adults-only resorts offer quieter, more romantic atmospheres. Family resorts have kids clubs and activities.</span>
+            </ListItem>
+          </ul>
+
+          <SectionHeading>Booking Tips</SectionHeading>
+          <ul className="list-none ml-0 mb-8 space-y-4">
+            <ListItem icon="💰" title="Best Prices:">
+              <span className="text-base md:text-lg">• Book 3-6 months in advance for best rates</span>
+              <br />
+              <span className="text-base md:text-lg">• Compare Expedia, Booking.com, and direct resort websites</span>
+              <br />
+              <span className="text-base md:text-lg">• Consider travel agents for package deals</span>
+              <br />
+              <span className="text-base md:text-lg">• Look for all-inclusive packages including airfare</span>
+            </ListItem>
+
+            <ListItem icon="📅" title="Best Times to Visit:">
+              <span className="text-base md:text-lg">• <strong>High Season (Dec-Apr):</strong> Best weather, higher prices</span>
+              <br />
+              <span className="text-base md:text-lg">• <strong>Shoulder Season (May, Nov):</strong> Good weather, better deals</span>
+              <br />
+              <span className="text-base md:text-lg">• <strong>Low Season (Jun-Oct):</strong> Hurricane season, best prices</span>
+              <InfoTag type="warning">⚠️ Avoid September-October for hurricane risk</InfoTag>
+            </ListItem>
+
+            <ListItem icon="🔒" title="Travel Insurance:">
+              <span className="text-base md:text-lg">Highly recommended, especially during hurricane season. Covers cancellations, medical emergencies, and lost luggage.</span>
+            </ListItem>
+          </ul>
+
+          <SectionHeading>Resort Etiquette</SectionHeading>
+          <ul className="list-none ml-0 space-y-4">
+            <ListItem icon="💵" title="Tipping:">
+              <span className="text-base md:text-lg">Even at all-inclusives, tipping is appreciated (but not required):</span>
+              <br />
+              <span className="text-base md:text-lg">• Bartenders: $1-2 per drink</span>
+              <br />
+              <span className="text-base md:text-lg">• Restaurant servers: $5-10 per meal</span>
+              <br />
+              <span className="text-base md:text-lg">• Housekeeping: $2-5 per day</span>
+              <br />
+              <span className="text-base md:text-lg">• Concierge: $5-20 for special help</span>
+              <InfoTag type="tip">💡 Bring small USD bills for easy tipping</InfoTag>
+            </ListItem>
+
+            <ListItem icon="⏰" title="Reservations:">
+              <span className="text-base md:text-lg">Make restaurant reservations early, especially for specialty restaurants. Some resorts book up quickly.</span>
+            </ListItem>
+
+            <ListItem icon="🎟️" title="Wristbands:">
+              <span className="text-base md:text-lg">Keep your all-inclusive wristband on at all times - you'll need it for food, drinks, and activities.</span>
+            </ListItem>
+          </ul>
+        </ContentCard>
       </main>
     </>
   );
