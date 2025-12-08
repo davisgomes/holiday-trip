@@ -5,6 +5,7 @@ import ContentCard from "@/components/page-layout/ContentCard";
 import SectionHeading from "@/components/content/SectionHeading";
 import ListItem from "@/components/content/ListItem";
 import InfoTag from "@/components/content/InfoTag";
+import { prefix } from "@/lib/prefix";
 
 export default function TravelPage() {
   return (
@@ -12,7 +13,7 @@ export default function TravelPage() {
       <Navigation />
       <main className="relative min-h-screen w-full overflow-x-hidden">
         <PageHeader
-          imageSrc="/images/travel.jpg"
+          imageSrc={`${prefix}/images/travel.jpg`}
           imageAlt="Travel Background"
           title="Travel"
         />

@@ -5,6 +5,7 @@ import ContentCard from "@/components/page-layout/ContentCard";
 import SectionHeading from "@/components/content/SectionHeading";
 import ListItem from "@/components/content/ListItem";
 import InfoTag from "@/components/content/InfoTag";
+import { prefix } from "@/lib/prefix";
 
 export default function PackingPage() {
   return (
@@ -12,7 +13,7 @@ export default function PackingPage() {
       <Navigation />
       <main className="relative min-h-screen w-full overflow-x-hidden">
         <PageHeader
-          imageSrc="/images/packing.jpg"
+          imageSrc={`${prefix}/images/packing.jpg`}
           imageAlt="Packing Background"
           title="Packing Guide"
         />
