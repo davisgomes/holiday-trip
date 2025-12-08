@@ -12,7 +12,7 @@ export default function AccommodationsPage() {
       <Navigation />
       <main className="relative min-h-screen w-full overflow-x-hidden">
         <PageHeader
-          imageSrc={`${prefix}/images/travel.jpg`}
+          imageSrc={`${prefix}/images/accommodations.jpg`}
           imageAlt="Accommodations Background"
           title="Accommodations"
         />
